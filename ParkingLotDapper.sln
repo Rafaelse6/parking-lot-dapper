@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingLotDapper", "ParkingLotDapper\ParkingLotDapper.csproj", "{D32D016E-5907-43FE-8FC7-8B80B2E25303}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9FDB0665-7D23-4655-99A2-2E61A3410809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D32D016E-5907-43FE-8FC7-8B80B2E25303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D32D016E-5907-43FE-8FC7-8B80B2E25303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D32D016E-5907-43FE-8FC7-8B80B2E25303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FDB0665-7D23-4655-99A2-2E61A3410809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDB0665-7D23-4655-99A2-2E61A3410809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDB0665-7D23-4655-99A2-2E61A3410809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDB0665-7D23-4655-99A2-2E61A3410809}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
