@@ -24,13 +24,13 @@ namespace ParkingLotDapper.Controllers
 
         }
 
-        [HttpGet("/novo")]
+        [HttpGet("novo")]
         public IActionResult New()
         {
             return View();
         }
 
-        [HttpPost("/Criar")]
+        [HttpPost("Criar")]
         public IActionResult Create([FromForm] ValorDoMinuto valorDoMinuto)
         {
             var sql = "INSERT INTO valores (Minutos, Valor) VALUES (@Minutos, @Valor)";
@@ -39,13 +39,31 @@ namespace ParkingLotDapper.Controllers
             return Redirect("/valores");
         }
 
-        [HttpPost("/{id}/apagar")]
+        [HttpPost("{id}/apagar")]
         public IActionResult Delete([FromRoute] int id)
         {
             var sql = "DELETE FROM valores WHERE id=@id";
             _connection.Execute(sql, new ValorDoMinuto { Id = id });
 
             return Redirect("/valores");
+        }
+
+        [HttpPost("{id}/alterar")]
+        public IActionResult Update([FromRoute] int id, [FromForm] ValorDoMinuto valorDoMinuto)
+        {
+            valorDoMinuto.Id = id;
+
+            var sql = "UPDATE valores SET Minutos = @Minutos, valor = @Valor where id = @id";
+            _connection.Execute(sql, valorDoMinuto);
+
+            return Redirect("/valores");
+        }
+
+        [HttpGet("{id}/editar")]
+        public IActionResult Edit([FromRoute] int id)
+        {
+            var valor = _connection.Query<ValorDoMinuto>("SELECT * FROM valores where id = @id", new ValorDoMinuto { Id = id }).FirstOrDefault();
+            return View(valor);
         }
     }
 }
