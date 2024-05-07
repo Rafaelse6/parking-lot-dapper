@@ -23,5 +23,20 @@ namespace ParkingLotDapper.Controllers
             return View(values);
 
         }
+
+        [HttpGet("/novo")]
+        public IActionResult New()
+        {
+            return View();
+        }
+
+        [HttpPost("/Criar")]
+        public IActionResult Create([FromForm] ValorDoMinuto valorDoMinuto)
+        {
+            var sql = "INSERT INTO valores (Minutos, Valor) VALUES (@Minutos, @Valor)";
+            _connection.Execute(sql, valorDoMinuto);
+
+            return Redirect("/valores");
+        }
     }
 }
