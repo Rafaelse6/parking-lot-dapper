@@ -38,5 +38,14 @@ namespace ParkingLotDapper.Controllers
 
             return Redirect("/valores");
         }
+
+        [HttpPost("/{id}/apagar")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            var sql = "DELETE FROM valores WHERE id=@id";
+            _connection.Execute(sql, new ValorDoMinuto { Id = id });
+
+            return Redirect("/valores");
+        }
     }
 }
