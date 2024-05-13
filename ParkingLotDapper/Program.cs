@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using ParkingLotDapper.Repositories;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddScoped<IDbConnection>((sp) =>
     new MySqlConnection(connectionString));
+builder.Services.AddScoped(typeof(IRepository<>), typeof(RepositoryDapper<>));
 
 var app = builder.Build();
 
