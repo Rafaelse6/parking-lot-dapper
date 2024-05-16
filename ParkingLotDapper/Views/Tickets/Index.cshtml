@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Ticket>
+
+@{
+    ViewData["Title"] = "Tickets";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Tickets</h1>
+    <a class="btn btn-primary" asp-controller="Tickets" asp-action="New">Novo</a>
+</div>
+
+<div class="text-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome do cliente</th>
+                <th>Placa do carro</th>
+                <th>Marca do carro</th>
+                <th>Modelo do carro</th>
+                <th>Horário Entrada</th>
+                <th>Local</th>
+                <th>Data Saida</th>
+                <th>Valor Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Veiculo.Cliente.Nome</td>
+                    <td>@item.Veiculo.Placa</td>
+                    <td>@item.Veiculo.Marca</td>
+                    <td>@item.Veiculo.Modelo</td>
+                    <td>@item.Vaga.CodigoLocalizacao</td>
+                    <td>@item.DataEntrada.ToString("dd/MM/yyyy HH:MM")</td>
+                    <td>@item.DataSaida?.ToString("dd/MM/yyyy HH:MM")</td>
+                    <td style="font-size: 30px;">
+                        @item.TotalValue(ViewBag.ValorDoMinuto).ToString("C", new System.Globalization.CultureInfo("pt-BR"))
+
+                        <hr>
+                        <form onsubmit="return confirm('Confirma Pagamento?')" asp-route-id="@item.Id" asp-action="Pago" asp-controller="Tickets" method="post">
+                            <button type="submit" class="btn btn-success" style="font-size: 30px;">R$ Pago</button>
+                        </form>
+                        <form onsubmit="return confirm('Confirma Exclusão?')" asp-route-id="@item.Id" asp-action="Delete" asp-controller="Tickets" method="post">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
